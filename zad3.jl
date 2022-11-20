@@ -13,7 +13,7 @@ function msiecznych(f, x0::Float64, x1::Float64, delta::Float64, epsilon::Float6
     x0 = x0 - fa * s
     fa = f(x0)
     if abs(x1 - x0) < delta || abs(fa) < epsilon
-      return x0, fa, maxit, 0
+      return x0, fa, k, 0
     end
   end
   return x0, fa, maxit, 1

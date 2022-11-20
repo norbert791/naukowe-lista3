@@ -8,11 +8,12 @@ function mstycznych(f, pf, x0::Float64, delta::Float64, epsilon::Float64, maxit:
 
   for k in 1:maxit
     temp :: Float64 = pf(x0)
-    if temp < delta
+    if abs(temp) < eps(Float64)
       return (x0, v, k, 2)
     end
-
-    x1 :: Float64 = x0 - v / pf(x0)
+    #println(temp)
+    #println(v, temp)
+    x1 :: Float64 = x0 - v / temp
     v = f(x1)
     if abs(x1 - x0) < delta || abs(v) < epsilon
       return x0, v, k, 0
@@ -20,6 +21,6 @@ function mstycznych(f, pf, x0::Float64, delta::Float64, epsilon::Float64, maxit:
     x0 = x1 
   end
 
-  return x0, v, maxit, 2
+  return x0, v, maxit, 1
 end
   
