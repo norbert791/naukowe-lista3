@@ -1,7 +1,5 @@
 #author: Norbert Jaśniewicz
-include("zad1.jl")
-include("zad2.jl")
-include("zad3.jl")
+include("methods.jl")
 
 f1(x::Float64) = exp(1 - x) - 1.0
 f2(x::Float64) = x * exp(-x)

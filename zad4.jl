@@ -1,11 +1,9 @@
 #author: Norbert Jaśniewicz
 
-include("zad1.jl")
-include("zad2.jl")
-include("zad3.jl")
+include("methods.jl")
 
-f(x) = x - (0.5 * x) ^ 2
-fp(x) = 1 - 0.5 * x
+f(x) = sin(x) - (0.5 * x) ^ 2
+fp(x) = cos(x) - 0.5 * x
 
 function stringRow(name :: String, p::NTuple{4, Any})
   return "$name,$(p[1]),$(p[2]),$(p[3]),$(p[4])"

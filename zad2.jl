@@ -1,26 +1,20 @@
-#author Norbert Jaśniewicz
+#author: Norbert Jaśniewicz
+include("methods.jl")
 
-function mstycznych(f, pf, x0::Float64, delta::Float64, epsilon::Float64, maxit::Int)
-  v :: Float64 = f(x0)
-  if abs(v) < epsilon
-    return (x0, v, 0, 0)
-  end
+function main()
+  fun(x :: Float64) = x ^ 2 - x - 5
+  funPrim(x :: Float64) = 2 * x - 1
+  delta::Float64 = 1e-4
+  epsilon::Float64 = 1e-4
+  x0, val, it, err = mstycznych(fun, funPrim, 4.0, delta, epsilon, 10)
+  @assert(x0 < delta || val < epsilon)
+  @assert(err == 0)
+  println("Test passed")
 
-  for k in 1:maxit
-    temp :: Float64 = pf(x0)
-    if abs(temp) < eps(Float64)
-      return (x0, v, k, 2)
-    end
-    #println(temp)
-    #println(v, temp)
-    x1 :: Float64 = x0 - v / temp
-    v = f(x1)
-    if abs(x1 - x0) < delta || abs(v) < epsilon
-      return x0, v, k, 0
-    end
-    x0 = x1 
-  end
-
-  return x0, v, maxit, 1
+  fun2(x :: Float64) = 5
+  fun2Prim(x :: Float64) = 0
+  x0, val, it, err = mstycznych(fun2, fun2Prim, 4.0, delta, epsilon, 10)
+  @assert(err == 2)
 end
-  
+
+main()

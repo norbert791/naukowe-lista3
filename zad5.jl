@@ -1,5 +1,5 @@
-#author
-include("zad1.jl")
+#author: Norbert Jaśniewicz
+include("methods.jl")
 
 f(x) = exp(x) - 3 * x
 
